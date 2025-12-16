@@ -1,14 +1,19 @@
-const readline = require('readline');
+import { input, select } from "@inquirer/prompts";
+import fs from "fs/promises";
 
-const prompts = readline.createInterface(process.stdin, process.stdout);
+const fileTodos = "./todo.json"
 
+// Parsing JSON
+// const todos = JSON.parse(fs.readFile(file, "utf-8"))
 
-prompts.question('Enter Learning Resources Name : ', (response) => {
-    if (response.toLocaleLowerCase() == 'gfg') {
-        console.log("You are a part of the very huge learing community.");
-    } else {
-        console.log("Have a look at Geeksforgeeks, they solve many of your techincal doubts.")
-    }
+// data load
+async function loadData() {
+    const data = await fs.readFile(file, "utf-8")
+    return JSON.parse(data)
+}
 
-    process.exit()
-})
+// save data (kirim data ke json)
+async function saveData(data) {
+    await fs.writeFile(fileTodos, JSON.stringify(data, null, 2))
+}
+
