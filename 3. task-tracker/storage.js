@@ -1,10 +1,4 @@
-import { input, select } from "@inquirer/prompts";
-import fs from "fs/promises";
-
-const fileTodos = "./todo.json"
-
-// Parsing JSON
-// const todos = JSON.parse(fs.readFile(file, "utf-8"))
+import fs from 'fs/promises'
 
 // data load
 async function loadData() {
@@ -17,3 +11,7 @@ async function saveData(data) {
     await fs.writeFile(fileTodos, JSON.stringify(data, null, 2))
 }
 
+export {
+    loadData,
+    saveData
+}
